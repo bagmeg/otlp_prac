@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/joonsoo-park/trcexporter/data";
+
+package data;
+
+service Trace {
+	rpc Consume(TraceData) returns (Reply) {}
+}
+
+message TraceData {
+	string Data = 1;
+}
+
+message Reply {
+	string message = 1;
+}

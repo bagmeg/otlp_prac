@@ -1,0 +1,5 @@
+type: grpcclient
+status:
+  class: exporter
+  stability:
+    development: [traces]

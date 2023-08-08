@@ -9,8 +9,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/bagmeg/otlp_prac/exporter/grpcclient/internal/metadata"
-
-	"github.com/bagmeg/otlp_prac/pkg/data"
+	data "github.com/bagmeg/otlp_prac/pkg/testData"
 )
 
 func NewFactory() exporter.Factory {

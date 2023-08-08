@@ -5,17 +5,17 @@ OCB_VER := 0.81.0
 OCB_OUT := otelcol-custom
 
 PROTO := protoc
-PROTO_DIR := ./pkg/testData
+PROTO_DIR := ./data
 PROTO_FILE := data.proto
-PROTO_OPT := --go_out=../grpc --go_opt=paths=source_relative --go-grpc_out=../grpc --go-grpc_opt=paths=source_relative
-
-.PHONY: proto
-proto:
-	cd $(PROTO_DIR) && $(PROTO) $(PROTO_OPT) $(PROTO_FILE)
+PROTO_OPT := --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative
 
 error:
 	@echo "Please choose one of the following target: ocb_build, ocb_clean, jaeger, hotrod, clean"
 	@exit 2
+
+.PHONY: proto
+proto:
+	cd $(PROTO_DIR) && $(PROTO) $(PROTO_OPT) $(PROTO_FILE)
 
 .PHONY: ocb_build
 ocb_build: download_ocb

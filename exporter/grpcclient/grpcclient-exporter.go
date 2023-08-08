@@ -3,13 +3,12 @@ package grpcclient
 import (
 	"context"
 
+	data "github.com/bagmeg/otlp_prac/pkg/testData"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
-
-	"github.com/bagmeg/otlp_prac/pkg/data"
 )
 
 type gCliExporter struct {

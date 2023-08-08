@@ -9,7 +9,7 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 
-	pb "github.com/bagmeg/otlp_prac/pkg/data"
+	"github.com/bagmeg/otlp_prac/pkg/data"
 )
 
 type gCliExporter struct {
@@ -17,7 +17,7 @@ type gCliExporter struct {
 	cancel context.CancelFunc
 	logger *zap.Logger
 	config *Config
-	client pb.TraceClient
+	client data.TraceClient
 	conn   *grpc.ClientConn
 }
 

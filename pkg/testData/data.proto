@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/joonsoo-park/trcexporter/data";
+option go_package = "github.com/bagmeg/otlp_prac/pkg/data";
 
 package data;
 

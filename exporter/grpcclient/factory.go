@@ -9,7 +9,8 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/bagmeg/otlp_prac/exporter/grpcclient/internal/metadata"
-	data "github.com/bagmeg/otlp_prac/pkg/testData"
+
+	pb "github.com/bagmeg/otlp_prac/data"
 )
 
 func NewFactory() exporter.Factory {
@@ -37,7 +38,7 @@ func createTracesExporter(_ context.Context, params exporter.CreateSettings, bas
 	if err != nil {
 		logger.Fatal("grpc dial failed...")
 	}
-	c := data.NewTraceClient()
+	c := pb.NewTraceClient(conn)
 	gCliExpt := &gCliExporter{
 		logger: logger,
 		config: grpcClientCfg,

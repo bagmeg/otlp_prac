@@ -3,7 +3,7 @@ package grpcclient
 import (
 	"context"
 
-	data "github.com/bagmeg/otlp_prac/pkg/testData"
+	pb "github.com/bagmeg/otlp_prac/data"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/pdata/ptrace"
@@ -16,7 +16,7 @@ type gCliExporter struct {
 	cancel context.CancelFunc
 	logger *zap.Logger
 	config *Config
-	client data.TraceClient
+	client pb.TraceClient
 	conn   *grpc.ClientConn
 }
 

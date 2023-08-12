@@ -14,7 +14,7 @@ const (
 
 type TraceConfig struct {
 	confignet.TCPAddr `mapstructure:",squash"`
-	flushInterval     float64
+	flushInterval     float64 `mapstructure:"flush_interval"`
 }
 
 type Config struct {

@@ -1,28 +1,61 @@
 package grpcclient
 
 import (
-	"fmt"
+	"errors"
 	"net/url"
-	"time"
-)
 
-type Config struct {
-	Interval string `mapstructure:"interval"`
-	Address  string `mapstructure:"address"`
-}
+	"go.opentelemetry.io/collector/config/confignet"
+	"go.opentelemetry.io/collector/confmap"
+)
 
 const (
-	defaultInterval = 1 * time.Minute
+	defaultInterval = 1.0
 )
 
-func (cfg *Config) Validate() error {
-	interval, _ := time.ParseDuration(cfg.Interval)
-	if interval.Seconds() < 1 {
-		return fmt.Errorf("when defined, the interval has to be set to at least 1 second (1s)")
+type TraceConfig struct {
+	confignet.TCPAddr `mapstructure:",squash"`
+	flushInterval     float64
+}
+
+type Config struct {
+	Traces TraceConfig `mapstructure:"traces"`
+}
+
+func (t TraceConfig) validate() (err error) {
+	if t.Endpoint == "" {
+		return errors.New("target address must not be empty")
+	}
+	if err = validateAddress(t.Endpoint); err != nil {
+		return
 	}
 
-	if _, err := url.ParseRequestURI(cfg.Address); err != nil {
-		return err
+	return
+}
+
+func (cfg *Config) Validate() (err error) {
+	if err = cfg.Traces.validate(); err != nil {
+		return
 	}
+
 	return nil
+}
+
+func (cfg *Config) Unmarshal(configMap *confmap.Conf) (err error) {
+	err = configMap.Unmarshal(cfg, confmap.WithErrorUnused())
+	if err != nil {
+		return
+	}
+
+	if !configMap.IsSet("traces::endpoint") {
+		cfg.Traces.TCPAddr.Endpoint = "http://localhost:9090"
+	}
+
+	return
+}
+
+// validateAddress check if the given address is valid.
+func validateAddress(addr string) (err error) {
+	_, err = url.ParseRequestURI(addr)
+
+	return
 }

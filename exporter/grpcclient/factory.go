@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/exporter"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -26,7 +27,12 @@ func NewFactory() exporter.Factory {
 
 func createDefaultConfig() component.Config {
 	return &Config{
-		Interval: defaultInterval.String(),
+		Traces: TraceConfig{
+			flushInterval: defaultInterval,
+			TCPAddr: confignet.TCPAddr{
+				Endpoint: "localhost:9090",
+			},
+		},
 	}
 }
 

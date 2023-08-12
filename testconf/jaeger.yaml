@@ -12,15 +12,28 @@ receivers:
         endpoint: 0.0.0.0:14268
 
 processors:
+  # default 값 적용
   batch:
+    send_batch_size: 8192
+    timeout: 200ms
+    send_batch_max_size: 0
+    metadata_keys: []
+    metadata_cardinality_limit: 1000
 
 exporters:
+  # default 값 적용
   logging:
     verbosity: detailed
+    sampling_initial: 2
+    sampling_thereafter: 500
+  grpcclient:
+    traces:
+      endpoint: "localhost:9090"
+      interval: 3
 
 service:
   pipelines:
     traces:
       receivers: [jaeger/withthriftcompact, jaeger/withthrift]
       processors: []
-      exporters: [logging]
+      exporters: [logging, grpcclient]

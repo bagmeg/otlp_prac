@@ -28,7 +28,7 @@ func NewFactory() exporter.Factory {
 func createDefaultConfig() component.Config {
 	return &Config{
 		Traces: TraceConfig{
-			flushInterval: defaultInterval,
+			FlushInterval: defaultInterval,
 			TCPAddr: confignet.TCPAddr{
 				Endpoint: "localhost:9090",
 			},

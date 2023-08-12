@@ -14,7 +14,7 @@ const (
 
 type TraceConfig struct {
 	confignet.TCPAddr `mapstructure:",squash"`
-	flushInterval     float64 `mapstructure:"flush_interval"`
+	FlushInterval     float64 `mapstructure:"interval,omitempty"`
 }
 
 type Config struct {
@@ -48,6 +48,10 @@ func (cfg *Config) Unmarshal(configMap *confmap.Conf) (err error) {
 
 	if !configMap.IsSet("traces::endpoint") {
 		cfg.Traces.TCPAddr.Endpoint = "http://localhost:9090"
+	}
+
+	if !configMap.IsSet("traces::interval") {
+		cfg.Traces.FlushInterval = defaultInterval
 	}
 
 	return

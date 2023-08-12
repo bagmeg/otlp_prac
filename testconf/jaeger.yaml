@@ -29,7 +29,7 @@ exporters:
   grpcclient:
     traces:
       endpoint: "localhost:9090"
-      interval: 3
+      flush_interval: 3
 
 service:
   pipelines:

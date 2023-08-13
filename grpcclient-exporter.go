@@ -2,6 +2,7 @@ package grpcclient
 
 import (
 	"context"
+	"fmt"
 
 	pb "github.com/bagmeg/otlp_prac/data"
 	"go.opentelemetry.io/collector/component"
@@ -40,6 +41,17 @@ func (g *gCliExporter) Capabilities() consumer.Capabilities {
 
 func (g *gCliExporter) ConsumeTraces(ctx context.Context, td ptrace.Traces) error {
 	g.logger.Debug("Consuming Traces.... 🎶🎶🎶🎶🎶🎶")
+
+	traceData := pb.TraceData{
+		Data: "Some data...",
+	}
+
+	reply, err := g.client.Consume(ctx, &traceData)
+	if err != nil {
+		g.logger.Warn("grpc error")
+		g.logger.Warn(fmt.Sprintf("err: %v", err))
+	}
+	g.logger.Info(reply.GetMessage())
 
 	return nil
 }

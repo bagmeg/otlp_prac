@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/bagmeg/otlp_prac/exporter/grpcclient/internal/metadata"
+	"github.com/bagmeg/otlp_prac/internal/metadata"
 
 	pb "github.com/bagmeg/otlp_prac/data"
 )

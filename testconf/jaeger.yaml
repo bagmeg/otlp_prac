@@ -28,8 +28,8 @@ exporters:
     sampling_thereafter: 500
   grpcclient:
     traces:
+      # interval: 3
       endpoint: "localhost:9090"
-      flush_interval: 3
 
 service:
   pipelines:

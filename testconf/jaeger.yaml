@@ -23,15 +23,18 @@ processors:
 exporters:
   # default 값 적용
   logging:
-    verbosity: detailed
+    verbosity: normal
     sampling_initial: 2
     sampling_thereafter: 500
   otlp_prac:
     traces:
       # interval: 3
-      endpoint: "localhost:7070 "
+      endpoint: "localhost:7070"
 
 service:
+  telemetry:
+    logs:
+      level: "debug"
   pipelines:
     traces:
       receivers: [jaeger/withthriftcompact, jaeger/withthrift]

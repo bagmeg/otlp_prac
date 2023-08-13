@@ -1,3 +1,3 @@
 //go:generate mdatagen metadata.yaml
 
-package grpcclient
+package otlp_prac

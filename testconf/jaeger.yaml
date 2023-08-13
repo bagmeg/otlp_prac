@@ -26,7 +26,7 @@ exporters:
     verbosity: detailed
     sampling_initial: 2
     sampling_thereafter: 500
-  grpcclient:
+  otlp_prac:
     traces:
       # interval: 3
       endpoint: "localhost:7070 "
@@ -36,4 +36,4 @@ service:
     traces:
       receivers: [jaeger/withthriftcompact, jaeger/withthrift]
       processors: []
-      exporters: [grpcclient]
+      exporters: [otlp_prac]

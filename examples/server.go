@@ -20,7 +20,7 @@ func (s *Server) Consume(_ context.Context, t *pb.TraceData) (*pb.Reply, error) 
 }
 
 func main() {
-	lis, err := net.Listen("tcp", "localhost:50051")
+	lis, err := net.Listen("tcp", "localhost:7070")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}

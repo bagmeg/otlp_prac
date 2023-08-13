@@ -1,4 +1,4 @@
-package grpcclient
+package otlp_prac
 
 import (
 	"errors"

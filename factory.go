@@ -40,7 +40,7 @@ func createTracesExporter(_ context.Context, params exporter.CreateSettings, bas
 	logger := params.Logger
 	grpcClientCfg := baseCfg.(*Config)
 
-	conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial(grpcClientCfg.Traces.Endpoint, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		logger.Fatal("grpc dial failed...")
 	}

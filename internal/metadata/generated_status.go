@@ -7,6 +7,6 @@ import (
 )
 
 const (
-	Type            = "grpcclient"
+	Type            = "otlp_prac"
 	TracesStability = component.StabilityLevelDevelopment
 )

@@ -36,4 +36,4 @@ service:
     traces:
       receivers: [jaeger/withthriftcompact, jaeger/withthrift]
       processors: []
-      exporters: [logging, grpcclient]
+      exporters: [grpcclient]

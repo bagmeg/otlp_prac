@@ -1,4 +1,4 @@
-type: grpcclient
+type: otlp_prac
 status:
   class: exporter
   stability:

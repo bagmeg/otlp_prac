@@ -21,17 +21,25 @@ type gCliExporter struct {
 }
 
 func (g *gCliExporter) Start(ctx context.Context, host component.Host) error {
+	g.logger.Info("Starting grpc client..... ❤️❤️❤️❤️❤️❤️")
+
 	return nil
 }
 
 func (g *gCliExporter) Shutdown(ctx context.Context) error {
+	g.logger.Debug("Shutting down grpc client.... 💕💕💕💕💕💕💕")
+
 	return nil
 }
 
 func (g *gCliExporter) Capabilities() consumer.Capabilities {
+	g.logger.Debug("What is wrong with this capatibilities.... .🤣🤣🤣🤣")
+
 	return consumer.Capabilities{}
 }
 
 func (g *gCliExporter) ConsumeTraces(ctx context.Context, td ptrace.Traces) error {
+	g.logger.Debug("Consuming Traces.... 🎶🎶🎶🎶🎶🎶")
+
 	return nil
 }

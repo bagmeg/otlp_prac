@@ -39,17 +39,17 @@ func createDefaultConfig() component.Config {
 
 func createTracesExporter(_ context.Context, params exporter.CreateSettings, baseCfg component.Config) (exporter.Traces, error) {
 	logger := params.Logger
-	grpcClientCfg := baseCfg.(*Config)
+	otlp_pracCfg := baseCfg.(*Config)
 
-	logger.Debug(fmt.Sprintf("GRPC Addr: %s", grpcClientCfg.Traces.Endpoint))
-	conn, err := grpc.Dial(grpcClientCfg.Traces.Endpoint, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	logger.Debug(fmt.Sprintf("GRPC Addr: %s", otlp_pracCfg.Traces.Endpoint))
+	conn, err := grpc.Dial(otlp_pracCfg.Traces.Endpoint, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		logger.Fatal("grpc dial failed...")
 	}
 	c := pb.NewTraceClient(conn)
 	gCliExpt := &gCliExporter{
 		logger: logger,
-		config: grpcClientCfg,
+		config: otlp_pracCfg,
 		conn:   conn,
 		client: c,
 	}

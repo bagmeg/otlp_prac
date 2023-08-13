@@ -29,7 +29,7 @@ exporters:
   grpcclient:
     traces:
       # interval: 3
-      endpoint: "localhost:9090"
+      endpoint: "localhost:7070 "
 
 service:
   pipelines:

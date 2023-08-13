@@ -2,6 +2,7 @@ package grpcclient
 
 import (
 	"context"
+	"fmt"
 
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/confignet"
@@ -40,6 +41,7 @@ func createTracesExporter(_ context.Context, params exporter.CreateSettings, bas
 	logger := params.Logger
 	grpcClientCfg := baseCfg.(*Config)
 
+	logger.Debug(fmt.Sprintf("GRPC Addr: %s", grpcClientCfg.Traces.Endpoint))
 	conn, err := grpc.Dial(grpcClientCfg.Traces.Endpoint, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		logger.Fatal("grpc dial failed...")
